@@ -1,70 +1,41 @@
-# EX 1 Display operator precedence in the infix expression.
+# EX3 Implementation of Tower of Hanoi
 ## DATE:
 ## AIM:
-To write a C program to find and display the priority of the operator in the given Postfix expression
+To write a C program to implement Tower of Hanoi
 
 ## Algorithm
-1. Initialize a character array ch with the string "+7*45%20".
-2. Loop through each character of the string.
-3. Check if the current character is an operator (+, -, *, /, %, ^, &, |).
-4. Determine the priority of the operator using the priority() function (assumed to be defined elsewhere).
-5. Print the operator along with its priority level (Lowest, Second Lowest, Second Highest, or Highest).  
+1. Start with n disks on peg A, using pegs B (auxiliary) and C (destination).
+2. If n > 0, recursively move the top n-1 disks from A to C using B as auxiliary.
+3. Move the remaining largest disk from A to B and print the move.
+4. Recursively move the n-1 disks from C to B using A as auxiliary.
+5. Repeat until all disks are moved from A to B following the rules.  
 
 ## Program:
 ```
-Program to find and display the priority of the operator in the given Postfix expression
+Program to implement Tower of Hanoi
 Developed by: SHAHIN J
-RegisterNumber:  212223040190
+RegisterNumber: 212223040190
 
-#include <stdio.h>
-#include<string.h>
-
-   
+#include<stdio.h>
+void TOH(int n,char x,char y,char z)
+{
+    if(n>0)
+  {
+      TOH(n-1,x,z,y);
+      printf("%c to %c\n",x,y);
+      TOH(n-1,z,y,x);
+  }
+}
 int main()
 {
-   int i,j;
-   char ch[100]="+7*45%20";
-   
-   for(i=0;i<strlen(ch);i++)
-   {
-   if(ch[i]=='+'||
-   ch[i]=='-'||
-   ch[i]=='*'||
-   ch[i]=='/'||
-   ch[i]=='%'||
-   ch[i]=='^'||
-   ch[i]=='&'||
-   ch[i]=='|')
-       {
-       j=priority(ch[i]);
-       switch(j)
-       {
-           case 1:
-             printf("%c  ----> ",ch[i]);
-           printf("Lowest Priority\n");
-             break;
-            case 2:
-             printf("%c  ----> ",ch[i]);
-           printf("Second Lowest Priority\n");
-             break;
-            case 3:
-             printf("%c  ----> ",ch[i]);
-           printf("Second Highest Priority\n"); 
-             break;
-            case 4:
-             printf("%c  ----> ",ch[i]);
-           printf("Highest Priority\n");
-             break;
-       }
-       }
-   }
-   
-    return 0;
+   int n=3;
+    TOH(n,'A','B','C');
+}
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/bb7a7414-bc53-44a1-9de8-79b579dd53e3)
+![image](https://github.com/user-attachments/assets/bbee71f8-3422-4f18-bd9a-18f28f3636d2)
 
 
 ## Result:
-Thus the C program to find and display the priority of the operator in the given Postfix expression is implemented successfully
+Thus, the C program to implement Tower of Hanoi using recursion is implemented successfully.
